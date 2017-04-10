@@ -17,8 +17,8 @@ namespace Neondragon
       TEXT_HEIGHT as const Integer = 16
 
       declare constructor( screenX as Integer, screenY as Integer, screenDepth as Integer )
-      declare virtual destructor
       declare sub set
+      declare sub render
     end type
 
     constructor Display( screenX as Integer, screenY as Integer, screenDepth as Integer )
@@ -27,12 +27,14 @@ namespace Neondragon
       this.screenDepth = screenDepth
     end constructor
 
-    destructor Display
-    end destructor
-
     sub Display.set
-      screenres this.screenX, this.screenY
+      screenres this.screenX, this.screenY, this.screenDepth
       width this.screenX \ this.TEXT_WIDTH, this.screenY \ this.TEXT_HEIGHT
+    end sub
+
+    sub Display.render
+      cls
+      screensync
     end sub
 
   end namespace

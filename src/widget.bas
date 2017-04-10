@@ -10,14 +10,28 @@ namespace Neondragon
 
     public:
       parent as Widget ptr
+      zPrev as Widget ptr
+      zNext as Widget ptr
 
-      declare constructor
+      x as Integer
+      y as Integer
+      w as Integer
+      h as Integer
+
+      declare constructor( x as Integer, y as Integer, w as Integer, h as Integer, name as String )
       declare virtual destructor
       declare function getName as String
+      declare virtual sub render
     end type
 
-    constructor Widget
-      ' nothing
+    constructor Widget( x as Integer, y as Integer, w as Integer, h as Integer, name as String )
+      this.x = x
+      this.y = y
+
+      this.w = w
+      this.h = h
+
+      this.name = name
     end constructor
 
     destructor Widget
@@ -28,9 +42,9 @@ namespace Neondragon
       return this.name
     end function
 
+    sub Widget.render
+      ' Abstract!!
+    end sub
+
   end namespace
 end namespace
-
-function test() as String
-  return "test"
-end function
