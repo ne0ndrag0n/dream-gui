@@ -4,8 +4,8 @@
 #include once "src/color.bas"
 
 dim display as Neondragon.Dream.Display = Neondragon.Dream.Display( 640, 480, 16 )
-display.set()
+display.set
 
 do
-  display.render()
+  display.render
 loop while inkey$ <> chr$(27)

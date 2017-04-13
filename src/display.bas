@@ -1,5 +1,6 @@
 ' Dream Widget Toolkit
 #include once "src/widget.bas"
+#include once "src/desktop.bas"
 
 namespace Neondragon
   namespace Dream
@@ -10,7 +11,9 @@ namespace Neondragon
       screenY as Integer
       screenDepth as Integer
 
-      rootWidget as Widget ptr
+      desk as Desktop ptr
+      zOrder as WidgetZOrder
+      children( 100 ) as Widget ptr
 
     public:
       TEXT_WIDTH as const Integer = 8
@@ -18,6 +21,7 @@ namespace Neondragon
 
       declare constructor( screenX as Integer, screenY as Integer, screenDepth as Integer )
       declare sub set
+      declare sub initialize
       declare sub render
     end type
 
@@ -30,6 +34,11 @@ namespace Neondragon
     sub Display.set
       screenres this.screenX, this.screenY, this.screenDepth
       width this.screenX \ this.TEXT_WIDTH, this.screenY \ this.TEXT_HEIGHT
+    end sub
+
+    sub Display.initialize
+      desk = new Desktop( 0, 0, screenX, screenY )
+      zOrder.widget = desk
     end sub
 
     sub Display.render
